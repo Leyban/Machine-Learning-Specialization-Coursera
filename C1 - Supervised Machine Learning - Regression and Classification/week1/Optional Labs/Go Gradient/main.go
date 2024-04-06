@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 )
 
 type LossFunc func(x, y []float64, w, b float64) float64
@@ -85,7 +86,9 @@ func main() {
 
 	alpha := 0.01
 
+	start := time.Now()
 	w_final, b_final, _, _ := gradient_descent(x_train, y_train, w_init, b_init, alpha, iterations, compute_loss, compute_gradient)
+	fmt.Println(time.Since(start))
 
 	fmt.Printf("final w: %v b: %v \n", w_final, b_final)
 }
